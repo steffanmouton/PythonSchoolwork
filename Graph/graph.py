@@ -13,7 +13,6 @@ def gen_edges(graph):
             edgeslist.append(Edge(node_alpha, node_beta))
     return edgeslist
 
-
 def gen_nodes(size):
     node_list = []
     for i in range(0,size):
@@ -32,6 +31,10 @@ class Edge:
 
         if relation:
             self._relation = relation(alpha,beta)
+    
+    @property
+    def points(self):
+        return self._points
 
 class Graph:
     '''Take in arguments: nodes and edges''' 
@@ -39,15 +42,33 @@ class Graph:
         self._nodes = nodes_param
         self._edges = edges_param
         if not self.edges:
-            self.edges = gen_edges(self)
+            self.set_edges(gen_edges(self))
+
+    def adjacent_edges(self, n):
+        adj_edge_list = []
+
+        for e in self.edges:
+            if e.points[0] == n or e.points[1] == n:
+                adj_edge_list.append(e)
+        
+        return adj_edge_list
+
 
     @property
     def nodes(self):
         return self._nodes
-        
+    
+    def set_nodes(self, n):
+        self._nodes = n
+       
     @property
     def edges(self):
         return self._edges
     
-    def adjacent_edges(Node n):
+    def set_edges(self, e):
+        self._edges = e
+
+
+
+                
         
