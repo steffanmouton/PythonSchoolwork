@@ -4,6 +4,8 @@
 # to bucket. Take next node out of bucket, repeat.
 
 def BFS(G, start):
+    '''Sort through an entire graph using the breadth-first method. Returns a list of discovered nodes.
+        Could add a goal check within.'''
     discovered_nodes = []
     Q = []
     Q.append(start)

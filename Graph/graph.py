@@ -1,10 +1,29 @@
 import math
 
-def find_distance(alpha, beta):
-        '''Returns the distance between two points by pythagorean theorum'''
-        return math.sqrt(pow(alpha[1]-alpha[0], 2) + pow(beta[1]-beta[0], 2))
+def find_distance(a, b):
+        '''Returns the distance between two points by pythagorean theorum.'''
+        if a is tuple and b is tuple:
+            alpha = (float(a[0]), float(a[1]))
+            beta = (float(b[0]), float(b[1]))
+            return float(math.sqrt(pow(beta[0]-alpha[0], 2) + pow(beta[1]-alpha[1], 2)))
+        if a is list and b is list:
+            alpha = [float(a[0]), float(a[1]), float(a[2])]
+            beta = [float(b[0]), float(b[1]), float(b[2])]
+            return float(math.sqrt(pow(beta[0]-alpha[0], 2) + pow(beta[1]-alpha[1], 2) + pow(beta[2]-alpha[2], 2)))
+
+        '''I think this is much more efficient, not tested though'''
+        '''
+        sum_under_root = 0.0
+        for i in zip(a, b):
+            sum_under_root += pow(b[i]-a[i], 2)
+        return (math.sqrt(sum_under_root))
+        '''
+
+
+            
 
 def gen_edges(graph):
+    '''Takes in a graph. Generates edges connecting all nodes. Return a list of these edges.'''
     edgeslist = []
     for node_alpha in graph.nodes:
         for node_beta in graph.nodes:
@@ -20,12 +39,12 @@ def gen_nodes(size):
             node_list.append((i,j))
 
 class Node:
-    '''Contains data'''
+    '''Contains data.'''
     def __init__(self, value):
         self._data = value
 
 class Edge:
-    '''Connection between two nodes'''
+    '''Connection between two nodes. Takes in parameters of two points to be connected.'''
     def __init__(self, alpha, beta, relation = None):
         self._points = (alpha, beta)
 
@@ -45,6 +64,7 @@ class Graph:
             self.set_edges(gen_edges(self))
 
     def adjacent_edges(self, n):
+        '''Takes in a node, returns a list of edges connected to itself'''
         adj_edge_list = []
 
         for e in self.edges:
@@ -67,8 +87,3 @@ class Graph:
     
     def set_edges(self, e):
         self._edges = e
-
-
-
-                
-        
