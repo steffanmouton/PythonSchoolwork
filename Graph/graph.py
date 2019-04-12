@@ -1,26 +1,11 @@
 import math
 
 def find_distance(a, b):
-        '''Returns the distance between two points by pythagorean theorum.'''
-        if a is tuple and b is tuple:
-            alpha = (float(a[0]), float(a[1]))
-            beta = (float(b[0]), float(b[1]))
-            return float(math.sqrt(pow(beta[0]-alpha[0], 2) + pow(beta[1]-alpha[1], 2)))
-        if a is list and b is list:
-            alpha = [float(a[0]), float(a[1]), float(a[2])]
-            beta = [float(b[0]), float(b[1]), float(b[2])]
-            return float(math.sqrt(pow(beta[0]-alpha[0], 2) + pow(beta[1]-alpha[1], 2) + pow(beta[2]-alpha[2], 2)))
-
-        '''I think this is much more efficient, not tested though'''
-        '''
         sum_under_root = 0.0
         for i in zip(a, b):
             sum_under_root += pow(b[i]-a[i], 2)
         return (math.sqrt(sum_under_root))
-        '''
-
-
-            
+          
 
 def gen_edges(graph):
     '''Takes in a graph. Generates edges connecting all nodes. Return a list of these edges.'''
